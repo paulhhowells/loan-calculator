@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import RepaymentBlock from '../RepaymentBlock';
+import ExplainParameters from '../ExplainParameters';
 
 // Declare initial amount and duration.
 const initial = {
@@ -8,12 +9,29 @@ const initial = {
 };
 
 const upfrontRatePercentage = 10;
+const parameterDefinitions = {
+  "revolving_credit_facility": {
+    "amount_min": 1000,
+    "amount_max": 150000,
+    "duration_min": 1,
+    "duration_max": 12
+  },
+  "business_loan": {
+    "amount_min": 10000,
+    "amount_max": 200000,
+    "duration_min": 1,
+    "duration_max": 60
+  }
+};
 
 function Repayment () {
   const [formState, setFormState] = useState({
     amountRequested: initial.amountRequested,
     monthsDuration: initial.monthsDuration,
   });
+
+  const showRevolvingCreditFacility = showRepaymentOption('revolving_credit_facility', parameterDefinitions, formState);
+  const showBusinessLoan = showRepaymentOption('business_loan', parameterDefinitions, formState);
 
   function handleFieldChange (event) {
     const name = event.target.name;
@@ -54,20 +72,44 @@ function Repayment () {
         </div>
       </form>
       <div>
-        <RepaymentBlock
-          title="Revolving Credit Facility"
-          amountRequested={formState.amountRequested}
-          monthsDuration={formState.monthsDuration}
-        />
-        <RepaymentBlock
-          title="Business Loan"
-          amountRequested={formState.amountRequested}
-          monthsDuration={formState.monthsDuration}
-          upfrontRate={upfrontRatePercentage}
-        />
+        {showRevolvingCreditFacility ? (
+          <RepaymentBlock
+            title="Revolving Credit Facility"
+            amountRequested={formState.amountRequested}
+            monthsDuration={formState.monthsDuration}
+          />
+        ) : (
+          <ExplainParameters
+            loanType="revolving_credit_facility"
+            parameterDefinitions={parameterDefinitions}
+          />
+        )}
+        {showBusinessLoan ? (
+          <RepaymentBlock
+            title="Business Loan"
+            amountRequested={formState.amountRequested}
+            monthsDuration={formState.monthsDuration}
+            upfrontRate={upfrontRatePercentage}
+          />
+        ) : (
+          <ExplainParameters
+            loanType="business_loan"
+            parameterDefinitions={parameterDefinitions}
+          />
+        )}
       </div>
     </div>
   );
+}
+
+function showRepaymentOption (loanType, parameterDefinitions, requestedValues) {
+  const { amountRequested, monthsDuration } = requestedValues;
+  const { amount_min, amount_max, duration_min, duration_max } = parameterDefinitions[loanType];
+
+  return (Number(amountRequested) >= amount_min) &&
+    (Number(amountRequested) <= amount_max) &&
+    (Number(monthsDuration) >= duration_min) &&
+    (Number(monthsDuration) <= duration_max);
 }
 
 export default Repayment;
