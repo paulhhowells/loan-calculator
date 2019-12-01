@@ -1,6 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
+import RepaymentBlock from '../RepaymentBlock';
+
+// Declare initial amount and duration.
+const initial = {
+  amountRequested: 10000,
+  monthsDuration: 6,
+};
+
+const upfrontRatePercentage = 10;
 
 function Repayment () {
+  const [formState, setFormState] = useState({
+    amountRequested: initial.amountRequested,
+    monthsDuration: initial.monthsDuration,
+  });
+
+  function handleFieldChange (event) {
+    const name = event.target.name;
+    const value = event.target.value;
+
+    setFormState({
+      ...formState,
+      [name]: value
+    });
+  }
+
   function handleSubmit (event) {
     event.preventDefault();
   }
@@ -15,6 +39,8 @@ function Repayment () {
             name="amountRequested"
             type="number"
             pattern="[0-9]*"
+            value={formState.amountRequested}
+            onChange={handleFieldChange}
           />
           <label htmlFor="monthsDuration">Duration (in months)</label>
           <input
@@ -22,36 +48,23 @@ function Repayment () {
             name="monthsDuration"
             type="number"
             pattern="[0-9]*"
+            value={formState.monthsDuration}
+            onChange={handleFieldChange}
           />
         </div>
       </form>
       <div>
-        <table>
-        <thead>
-          <tr>
-            <th scope="col">Repayment date</th>
-            <th scope="col">Principle</th>
-            <th scope="col">Interest</th>
-            <th scope="col">Total repayment</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <th>total</th>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tfoot>
-        </table>
+        <RepaymentBlock
+          title="Revolving Credit Facility"
+          amountRequested={formState.amountRequested}
+          monthsDuration={formState.monthsDuration}
+        />
+        <RepaymentBlock
+          title="Business Loan"
+          amountRequested={formState.amountRequested}
+          monthsDuration={formState.monthsDuration}
+          upfrontRate={upfrontRatePercentage}
+        />
       </div>
     </div>
   );
