@@ -1,6 +1,10 @@
 # loan-calculator
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Installation
+
+Use `yarn` or `npm install` to install.
+
+## Run
 
 Run the app in development mode with:
 ```bash
@@ -25,5 +29,17 @@ Run e2e tests with:
 yarn run cypress open
 ```
 
-# To do
+## Things to improve
 
+* Number rounding would benefit from consideration.  Little thought has been given to rounding errors, or policy on rounding up or down.
+* Test coverage should be increased.
+* Move parameterDefinitionsURL into an environment variable.
+
+## Features
+
+* Responsive Web Design
+* Cleaner numeric input fields, that respond to up & down arrow keys.
+* Product restriction according to amount & duration.
+
+## About
+The project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
