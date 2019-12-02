@@ -11,7 +11,7 @@ const initial = {
 };
 
 const upfrontRatePercentage = 10;
-const parameterDefinitionsURL = 'http://www.mocky.io/v2/5d4aa9e93300006f000f5ea9';
+const parameterDefinitionsURL = 'https://www.mocky.io/v2/5d4aa9e93300006f000f5ea9';
 
 function Repayment () {
   const [formState, setFormState] = useState({
