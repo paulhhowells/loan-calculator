@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useFetchJson } from '../../hooks';
 import RepaymentBlock from '../RepaymentBlock';
 import ExplainParameters from '../ExplainParameters';
+import './Repayment.css';
 
 // Declare initial amount and duration.
 const initial = {
@@ -41,56 +42,68 @@ function Repayment () {
     const showBusinessLoan = showRepaymentOption('business_loan', parameterDefinitions, formState);
 
     return (
-      <div>
+      <div className="repayment">
         <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="amountRequested">Amount requested (in £)</label>
-            <input
-              id="amountRequested"
-              name="amountRequested"
-              type="number"
-              pattern="[0-9]*"
-              value={formState.amountRequested}
-              onChange={handleFieldChange}
-            />
-            <label htmlFor="monthsDuration">Duration (in months)</label>
-            <input
-              id="monthsDuration"
-              name="monthsDuration"
-              type="number"
-              pattern="[0-9]*"
-              value={formState.monthsDuration}
-              onChange={handleFieldChange}
-            />
+          <div className="repayment__amount-and-duration">
+            <div>
+              <label htmlFor="amountRequested" className="repayment__number-field repayment__number-field--wide">
+                <span>Amount requested </span>
+                <span>(in £) </span>
+                <input
+                  id="amountRequested"
+                  name="amountRequested"
+                  type="number"
+                  pattern="[0-9]*"
+                  value={formState.amountRequested}
+                  onChange={handleFieldChange}
+                />
+              </label>
+            </div>
+            <div>
+              <label htmlFor="monthsDuration" className="repayment__number-field">
+                <span>Duration </span>
+                <span>(in months) </span>
+                <input
+                  id="monthsDuration"
+                  name="monthsDuration"
+                  type="number"
+                  pattern="[0-9]*"
+                  value={formState.monthsDuration}
+                  onChange={handleFieldChange}
+                />
+              </label>
+            </div>
+          </div>
+          <div className="repayment__blocks">
+            {showRevolvingCreditFacility ? (
+              <RepaymentBlock
+                title="Revolving Credit Facility"
+                className="repayment__block"
+                amountRequested={formState.amountRequested}
+                monthsDuration={formState.monthsDuration}
+              />
+            ) : (
+              <ExplainParameters
+                loanType="revolving_credit_facility"
+                parameterDefinitions={parameterDefinitions}
+              />
+            )}
+            {showBusinessLoan ? (
+              <RepaymentBlock
+                title="Business Loan"
+                className="repayment__block"
+                amountRequested={formState.amountRequested}
+                monthsDuration={formState.monthsDuration}
+                upfrontRate={upfrontRatePercentage}
+              />
+            ) : (
+              <ExplainParameters
+                loanType="business_loan"
+                parameterDefinitions={parameterDefinitions}
+              />
+            )}
           </div>
         </form>
-        <div>
-          {showRevolvingCreditFacility ? (
-            <RepaymentBlock
-              title="Revolving Credit Facility"
-              amountRequested={formState.amountRequested}
-              monthsDuration={formState.monthsDuration}
-            />
-          ) : (
-            <ExplainParameters
-              loanType="revolving_credit_facility"
-              parameterDefinitions={parameterDefinitions}
-            />
-          )}
-          {showBusinessLoan ? (
-            <RepaymentBlock
-              title="Business Loan"
-              amountRequested={formState.amountRequested}
-              monthsDuration={formState.monthsDuration}
-              upfrontRate={upfrontRatePercentage}
-            />
-          ) : (
-            <ExplainParameters
-              loanType="business_loan"
-              parameterDefinitions={parameterDefinitions}
-            />
-          )}
-        </div>
       </div>
     );
   } else {

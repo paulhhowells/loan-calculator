@@ -4,11 +4,11 @@ import './App.css';
 
 function App () {
   return (
-    <div className="">
-      <header className="">
+    <div className="page">
+      <header className="page__header">
         <h1>Your Loan</h1>
       </header>
-      <main>
+      <main className="page__main">
         <Repayment />
       </main>
     </div>

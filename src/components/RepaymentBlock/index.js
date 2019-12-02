@@ -35,15 +35,19 @@ function RepaymentBlock ({
     <div {...props}>
       <h2>{title}</h2>
       <div>
-        <label htmlFor={inputId}>Interest rate</label>
-        <input
-          id={inputId}
-          name={inputId}
-          type="text"
-          pattern="[0-9]*"
-          value={interestRate}
-          onChange={interestRateChange}
-        />
+        <label htmlFor={inputId} className="repayment__number-field repayment__number-field--centred">
+          <span>Interest rate </span>
+          <span>(in %) </span>
+          <input
+            id={inputId}
+            name={inputId}
+            type="number"
+            pattern="[0-9]*"
+            value={interestRate}
+            onChange={interestRateChange}
+          />
+        </label>
+
         <RepaymentTable
           months={formattedTable.months}
           total={formattedTable.total}

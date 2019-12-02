@@ -1,0 +1,56 @@
+.repayment {}
+
+.repayment__amount-and-duration {
+  display: flex;
+  flex-direction: column;
+  margin: 1em 0;
+}
+.repayment__amount-and-duration > div {
+  margin: 0 auto 1em auto;
+}
+
+.repayment__blocks {}
+@media screen and (min-width: 30rem) {
+  .repayment__blocks {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(28rem, 1fr));
+    grid-gap: 1rem;
+  }
+}
+.repayment__blocks h2 {
+  margin: 1em 0;
+  text-align: center;
+}
+.repayment__block {
+  box-sizing: border-box;
+  padding-top: 0.25em;
+  background: #fff7;
+}
+@media screen and (min-width: 32rem) {
+  .repayment__block {
+    padding: 0.5rem;
+  }
+}
+
+.repayment__number-field {
+  display: flex;
+  align-items: center;
+}
+.repayment__number-field--centred {
+  justify-content: center;
+}
+.repayment__number-field span {
+  order: 0;
+}
+.repayment__number-field span + span {
+  order: 2;
+}
+.repayment__number-field input {
+  order: 1;
+  width: 2em;
+  padding: 0.25em 0.5em;
+  margin: 0 0.5em;
+}
+.repayment__number-field--wide input {
+  width: 4.5em;
+}

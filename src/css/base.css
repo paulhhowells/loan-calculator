@@ -1,0 +1,27 @@
+html, body {margin: 0; padding: 0;}
+body {
+  font-family: "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  font-size: 1rem;
+  line-height: 1.25;
+  background: #eee;
+}
+
+input,
+button,
+textarea {
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+h1 {
+  font-weight: 800;
+  font-size: 2rem;
+  line-height: 1.2;
+}
