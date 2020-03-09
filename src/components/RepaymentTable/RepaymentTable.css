@@ -1,8 +1,8 @@
-.repayment-table {
+.repayment-table-v2 {
   overflow: scroll;
 }
 
-.repayment-table table {
+.repayment-table-v2 table {
   width: 100%;
   box-sizing: border-box;
   margin: 1rem 0;
@@ -13,40 +13,40 @@
   font-size: 0.9375rem;
 }
 @media screen and (min-width: 24rem) {
-  .repayment-table table {
+  .repayment-table-v2 table {
     font-size: 1rem;
   }
 }
 
-.repayment-table tr {
+.repayment-table-v2 tr {
   padding: 0;
 }
-.repayment-table tbody tr:nth-child(odd) {
+.repayment-table-v2 tbody tr:nth-child(odd) {
   background: rgba(0, 0, 0, 0.05);
 }
 
-.repayment-table th,
-.repayment-table td {
+.repayment-table-v2 th,
+.repayment-table-v2 td {
   padding: 0.5em;
   border-bottom: 1px solid #999;
 }
 @media screen and (min-width: 30rem) {
-  .repayment-table th,
-  .repayment-table td {
+  .repayment-table-v2 th,
+  .repayment-table-v2 td {
     padding: 1em;
   }
 }
 
-.repayment-table thead th {
+.repayment-table-v2 thead th {
   border-bottom: 2px solid #777;
   vertical-align: top;
 }
 
-.repayment-table td {
+.repayment-table-v2 td {
   font-variant-numeric: tabular-nums;
 }
 
-.repayment-table tfoot th,
-.repayment-table tfoot td {
+.repayment-table-v2 tfoot th,
+.repayment-table-v2 tfoot td {
   background: rgba(255, 255, 255, 0.4);
 }

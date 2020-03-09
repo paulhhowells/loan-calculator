@@ -52,17 +52,17 @@ describe('Loan Calculator App', () => {
     cy.get('input#revolving-credit-facility-interest-rate').clear().type('3');
     cy.get('.repayment__blocks > .repayment__block')
       .eq(0)
-      .find('.repayment-table tfoot td')
+      .find('.repayment-table-v2 tfoot td')
       .eq(0)
       .contains('£10,000');
     cy.get('.repayment__blocks > .repayment__block')
       .eq(0)
-      .find('.repayment-table tfoot td')
+      .find('.repayment-table-v2 tfoot td')
       .eq(1)
       .contains('£750');
     cy.get('.repayment__blocks > .repayment__block')
       .eq(0)
-      .find('.repayment-table tfoot td')
+      .find('.repayment-table-v2 tfoot td')
       .eq(2)
       .contains('£10,750');
 
@@ -70,17 +70,17 @@ describe('Loan Calculator App', () => {
     cy.get('input#revolving-credit-facility-interest-rate').clear().type('10');
     cy.get('.repayment__blocks > .repayment__block')
       .eq(0)
-      .find('.repayment-table tfoot td')
+      .find('.repayment-table-v2 tfoot td')
       .eq(0)
       .contains('£10,000');
     cy.get('.repayment__blocks > .repayment__block')
       .eq(0)
-      .find('.repayment-table tfoot td')
+      .find('.repayment-table-v2 tfoot td')
       .eq(1)
       .contains('£2,500');
     cy.get('.repayment__blocks > .repayment__block')
       .eq(0)
-      .find('.repayment-table tfoot td')
+      .find('.repayment-table-v2 tfoot td')
       .eq(2)
       .contains('£12,500');
   });
@@ -90,17 +90,17 @@ describe('Loan Calculator App', () => {
     cy.get('input#business-loan-interest-rate').clear().type('3');
     cy.get('.repayment__blocks > .repayment__block')
       .eq(1)
-      .find('.repayment-table tfoot td')
+      .find('.repayment-table-v2 tfoot td')
       .eq(0)
       .contains('£10,000');
     cy.get('.repayment__blocks > .repayment__block')
       .eq(1)
-      .find('.repayment-table tfoot td')
+      .find('.repayment-table-v2 tfoot td')
       .eq(1)
       .contains('£1,750');
     cy.get('.repayment__blocks > .repayment__block')
       .eq(1)
-      .find('.repayment-table tfoot td')
+      .find('.repayment-table-v2 tfoot td')
       .eq(2)
       .contains('£11,750');
 
@@ -108,17 +108,17 @@ describe('Loan Calculator App', () => {
     cy.get('input#business-loan-interest-rate').clear().type('10');
     cy.get('.repayment__blocks > .repayment__block')
       .eq(1)
-      .find('.repayment-table tfoot td')
+      .find('.repayment-table-v2 tfoot td')
       .eq(0)
       .contains('£10,000');
     cy.get('.repayment__blocks > .repayment__block')
       .eq(1)
-      .find('.repayment-table tfoot td')
+      .find('.repayment-table-v2 tfoot td')
       .eq(1)
       .contains('£3,500');
     cy.get('.repayment__blocks > .repayment__block')
       .eq(1)
-      .find('.repayment-table tfoot td')
+      .find('.repayment-table-v2 tfoot td')
       .eq(2)
       .contains('£13,500');
   });

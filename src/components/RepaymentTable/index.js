@@ -4,7 +4,7 @@ import RepaymentTableRow from './RepaymentTableRow';
 import './RepaymentTable.css';
 
 const RepaymentTable = ({ months, total, ...props }) => (
-  <div className="repayment-table" {...props}>
+  <div className="repayment-table-v2" {...props}>
     <table aria-live="polite">
       <thead>
         <tr>

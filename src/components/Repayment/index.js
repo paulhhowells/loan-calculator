@@ -19,6 +19,10 @@ function Repayment () {
     monthsDuration: initial.monthsDuration,
   });
   const { json:parameterDefinitions, loading } = useFetchJson(parameterDefinitionsURL);
+  const [validationState, setValidationState] = useState({
+    amountRequested: true,
+    monthsDuration: true,
+  });
 
   function handleFieldChange (event) {
     const name = event.target.name;
@@ -28,6 +32,48 @@ function Repayment () {
       ...formState,
       [name]: value
     });
+
+    /**
+{
+  "revolving_credit_facility": {
+    "amount_min": 1000,
+    "amount_max": 150000,
+    "duration_min": 1,
+    "duration_max": 12
+  },
+  "business_loan": {
+    "amount_min": 10000,
+    "amount_max": 200000,
+    "duration_min": 1,
+    "duration_max": 60
+  }
+monthsDuration
+amountRequested
+
+     */
+    const validate = (name, value) => {
+      if (name === 'monthsDuration') {
+        return value >= parameterDefinitions.business_loan.duration_min &&
+          value <= parameterDefinitions.business_loan.duration_max &&
+          value >= parameterDefinitions.revolving_credit_facility.duration_min &&
+          value <= parameterDefinitions.revolving_credit_facility.duration_max;
+      }
+      else if (name === 'amountRequested') {
+        return value >= parameterDefinitions.business_loan.amount_min &&
+          value <= parameterDefinitions.business_loan.amount_max &&
+          value >= parameterDefinitions.revolving_credit_facility.amount_min &&
+          value <= parameterDefinitions.revolving_credit_facility.amount_max;
+      }
+    };
+    const validationValue = validate(name, value);
+
+    //showRepaymentOption(, parameterDefinitions, formState);
+    setValidationState({
+      ...validationState,
+      [name]: validationValue,
+    });
+
+    console.log('validationState', validationState);
   }
 
   function handleSubmit (event) {
